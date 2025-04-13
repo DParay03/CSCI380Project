@@ -1,18 +1,19 @@
 from django.shortcuts import render
+from .models import Post
 
 # Create your views here.
 
 posts = [
     {
         'author': '<NAME>',
-        'title': '<NAME>',
-        'text': '<NAMEsa,mdkfbhkajsdhfljksaljkfdsahkjfhdslajkhfjdksahkf>',
-        'date': '05/10/03'
+        'title': '<Nsfsfsd>',
+        'content': 'NAMEsa,mdkfbhkajsdhfljksaljkfdsahkjfhdslajkhfjdksahkf',
+        'date_posted': '05/10/03'
     }
 ]
 
 def home(request):
     context = {
-        'posts': posts
+        'posts': Post.objects.all()
     }
-    return render(request, 'communityPost.html', context)
+    return render(request, 'communityPost/communityPost.html', context)

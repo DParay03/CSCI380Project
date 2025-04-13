@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-{% for post in posts %}     
-    <h1>{{ post.title }}</h1>
-    <p>By {{ post.author }}</p>
-    <p>{{ post.text }}</p>
-    <p>{{ post.date }}</p>
-{% endfor %}
-{% endblock %}
