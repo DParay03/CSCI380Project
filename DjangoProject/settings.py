@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     ##Apps I create
     'communityPost.apps.CommunityPostConfig',
+    'users.apps.UsersConfig',
 
     #Default Apps
     'django.contrib.admin',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #3rd party apps
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
