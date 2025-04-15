@@ -31,7 +31,7 @@ urlpatterns = [
     path('home/', user_views.home, name='home'),
     path('profile/', user_views.profile, name="profile"),
     path('communityPost/', include('communityPost.urls')),
-
+    path('crisis-support/', core_views.crisis_support, name='crisis-support'),
 ]
 
 if settings.DEBUG:
