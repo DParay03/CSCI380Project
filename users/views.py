@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm
 
 # Create your views here.
@@ -10,7 +11,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account successfully created for {username}!')
-            return redirect('communityPost-home')
+            return redirect('login')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -19,4 +20,7 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
+@login_required(login_url='login')
+def profile(request):
+    return render(request, 'users/profile.html')
 
