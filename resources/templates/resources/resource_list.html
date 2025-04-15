@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Mental Health Resources</h2>
+
+  {% for resource in resources %}
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ resource.title }}</h5>
+        <p class="card-text">{{ resource.description }}</p>
+        {% if resource.url %}
+          <a href="{{ resource.url }}" class="btn btn-outline-primary" target="_blank">Learn More</a>
+        {% endif %}
+      </div>
+    </div>
+  {% empty %}
+    <p>No resources available yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

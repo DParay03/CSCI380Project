@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'communityPost.apps.CommunityPostConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
+    'resources.apps.ResourcesConfig',
 
     #Default Apps
     'django.contrib.admin',
