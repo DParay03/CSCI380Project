@@ -24,3 +24,6 @@ def register(request):
 def profile(request):
     return render(request, 'users/profile.html')
 
+def home(request):
+    return render(request, 'users/home.html')
+

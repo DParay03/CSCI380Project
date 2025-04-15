@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="text-center">
+    <h1 class="mb-4">Welcome to Mental Health App</h1>
+    <p class="mb-5">Your daily space for self-care, reflection, and mental improvement.</p>
+    <div class="d-flex justify-content-center gap-3">
+      <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Log In</a>
+      <a href="{% url 'register' %}" class="btn btn-outline-primary btn-lg">Sign Up</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
