@@ -4,17 +4,19 @@
   <h2 class="mb-4 text-center">Mental Health Resources</h2>
 
   {% for resource in resources %}
+      <a href="{% url 'resource-detail' resource.pk %}" class="text-decoration-none text-dark">
     <div class="card mb-3 shadow-sm">
       <div class="card-body">
         <h5 class="card-title">{{ resource.title }}</h5>
-        <p class="card-text">{{ resource.description }}</p>
+        <p class="card-text">{{ resource.description|truncatewords:20 }}</p>
         {% if resource.url %}
           <a href="{{ resource.url }}" class="btn btn-outline-primary" target="_blank">Learn More</a>
         {% endif %}
       </div>
     </div>
+      </a>
   {% empty %}
-    <p>No resources available yet.</p>
+    <p>No resources available yet. Sorry</p>
   {% endfor %}
 </div>
 {% endblock %}
