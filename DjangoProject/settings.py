@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
     'resources.apps.ResourcesConfig',
+    'checkins.apps.CheckinsConfig',
 
     #Default Apps
     'django.contrib.admin',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #3rd party apps
+    'django_extensions'
 ]
 
 MIDDLEWARE = [

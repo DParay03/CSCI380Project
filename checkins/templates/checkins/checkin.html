@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Daily Check-in</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>Your Scores</h3>
+    <p>Today's Score: {{ today_score }}</p>
+
+    {% if entries_count < 7 %}
+        <p>Note: Only {{ entries_count }} days of data available</p>
+        <h4>Recent Entries:</h4>
+        <ul>
+        {% for entry in recent_entries %}
+            <li>{{ entry.date|date:"M d" }}: {{ entry.score }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if weekly_avg %}
+        <p>Weekly Average: {{ weekly_avg|floatformat:1 }}</p>
+    {% else %}
+        <p>No entries yet this week</p>
+    {% endif %}
+{% endblock %}
