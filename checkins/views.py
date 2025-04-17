@@ -18,7 +18,7 @@ def daily_checkin(request):
         form = CheckInForm(request.POST, instance=checkin)
         if form.is_valid():
             form.save()
-            return redirect('check-in')
+            return redirect('checkin-home')
     else:
         form = CheckInForm(instance=checkin)
 
