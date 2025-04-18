@@ -47,9 +47,10 @@ class PostDetailView(DetailView):
     context_object_name = 'post'
     ordering = ['date_posted']
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    template_name = 'communityPost/communityPost_detail.html'
+    success_url = '/communityPost'
+    template_name = 'communityPost/post_confirm_delete.html'
     context_object_name = 'post'
     ordering = ['date_posted']
 
