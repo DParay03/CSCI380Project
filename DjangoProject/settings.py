@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     ##Apps I create
     'communityPost.apps.CommunityPostConfig',
+    'journal.apps.JournalConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
     'resources.apps.ResourcesConfig',

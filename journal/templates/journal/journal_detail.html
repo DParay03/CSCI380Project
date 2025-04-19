@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ journalEntry.user.profile.image.url }}" alt="">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="{% url 'user-posts' journalEntry.user.username %}">{{ journalEntry.user }}</a>
+                <small class="text-muted">{{ post.date_posted }}</small>
+                {% if journalEntry.user == user %}
+                    <div>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'journal-update' journalEntry.id %}">Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'journal-delete' journalEntry.id %}">Delete</a>
+                    </div>
+                {% endif %}
+            </div>
+            <h2 class="article-title">{{ journalEntry.title }}</h2>
+            <p class="article-content">{{ journalEntry.content }}</p>
+        </div>
+    </article>
+{% endblock content %}
