@@ -1,84 +1,105 @@
+
 body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    padding-top: 70px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+
+.navbar {
+    background-color: #4a7c59;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-ul {
-  margin: 0;
+.navbar .nav-link, .navbar .navbar-brand {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
 }
 
-.bg-steel {
-  background-color: #5f788a;
+.navbar .nav-link:hover {
+    color: #d4f1f4 !important;
 }
 
-.site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+/* Footer */
+footer {
+    background-color: #f0f4f8;
+    border-top: 1px solid #dbe2e8;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
 }
 
-.site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+footer a {
+    color: #d9534f;
+    text-decoration: none;
 }
 
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+footer a:hover {
+    text-decoration: underline;
 }
 
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
+/* Main Container */
+.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
-.article-title {
-  color: #444444;
+/* Buttons */
+.btn {
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
 }
 
-a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
+.btn-link {
+    color: #f8f9fa;
+    text-decoration: none;
 }
 
-.article-content {
-  white-space: pre-line;
+.btn-link:hover {
+    text-decoration: underline;
 }
 
-.article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
+/* Message Alert Handling */
+.alert {
+    border-radius: 8px;
 }
 
-.article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+/* Add spacing to nav form */
+.navbar .nav-item form {
+    margin-left: 1rem;
 }
 
-.article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
+.card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 1rem;
 }
 
-.article-svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
+.card-title {
+    color: #4a7c59;
 }
 
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+/* Auth Pages */
+.card form label {
+    font-weight: 500;
+    color: #4a4a4a;
 }
 
-.account-heading {
-  font-size: 2.5rem;
+.card form input,
+.card form select,
+.card form textarea {
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+}
+
+.card form input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(74, 124, 89, 0.25);
+    border-color: #4a7c59;
+}
+
+/* Smooth spacing around form inputs */
+.card form .form-group,
+.card form fieldset {
+    margin-bottom: 1rem;
 }
