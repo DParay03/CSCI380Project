@@ -5,23 +5,24 @@
 
       <!-- Left Section -->
       <div class="d-flex align-items-center">
-        <a class="navbar-brand mr-3" href="{% url 'home' %}">Django Blog</a>
+        <a class="navbar-brand mr-3" href="{% url 'home' %}">Mental Health App</a>
       </div>
       <!-- Center Section -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarToggle">
         <div class="navbar-nav">
-          <a class="nav-item nav-link px-2" href="{% url 'home' %}">Home</a>
-          <a class="nav-item nav-link px-2" href="{% url 'checkin-home' %}">Check In</a>
-          <a class="nav-item nav-link px-2" href="{% url 'communityPost-home' %}">Community</a>
-          <a class="nav-item nav-link px-2" href="{% url 'resource-list-home' %}">Resources</a>
-          <a class="nav-item nav-link px-2" href="{% url 'crisis-support' %}">Crisis</a>
-          <a class="nav-item nav-link px-2" href="{% url 'post-create' %}">Create Form</a>
-          <a class="nav-item nav-link px-2" href="{% url 'journal-create' %}">Journal Entry</a>
+            <a class="nav-item nav-link px-2" href="{% url 'home' %}">Home</a>
+            <a class="nav-item nav-link px-2" href="{% url 'checkin-home' %}">Check In</a>
+            <a class="nav-item nav-link px-2" href="{% url 'communityPost-home' %}">Community</a>
+            <a class="nav-item nav-link px-2" href="{% url 'journal-home' %}">View Journal</a>
+            <a class="nav-item nav-link px-2" href="{% url 'resource-list-home' %}">Resources</a>
+            <a class="nav-item nav-link px-2" href="{% url 'crisis-support' %}">Crisis</a>
         </div>
       </div>
 
       <!-- Right Section -->
       <div class="d-flex align-items-center">
+          <a class="nav-item nav-link px-2" href="{% url 'post-create' %}">Create Post</a>
+          <a class="nav-item nav-link px-2" href="{% url 'journal-create' %}">Create Journal Entry</a>
         <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
         <form method="post" action="{% url 'logout' %}" class="mb-0 ml-2">
           {% csrf_token %}

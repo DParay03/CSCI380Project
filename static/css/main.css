@@ -39,12 +39,6 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Main Container */
-.container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-
 /* Buttons */
 .btn {
     border-radius: 8px;
