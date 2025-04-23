@@ -33,7 +33,7 @@ class JournalCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('journal-list')  # Use the name of your journal list URL
+        return reverse_lazy('journal-home')  # Use the name of your journal list URL
 
 class JournalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = JournalEntry
