@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'resources.apps.ResourcesConfig',
     'checkins.apps.CheckinsConfig',
+    'report.apps.ReportConfig',
+
 
     #Default Apps
     'django.contrib.admin',

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Statistics Report{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">Admin Statistics Report</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <p><strong>Total Users:</strong> {{ user_count }}</p>
+            <p><strong>Total Posts:</strong> {{ post_count }}</p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Total Mood Check-Ins:</strong> {{ mood_checkins }}</p>
+            <p><strong>Average Mood Score:</strong> {{ average_mood }}</p>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-3">Metric Breakdown</h2>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Users</h5>
+                    <img src="{{ chart_user }}" class="img-fluid" alt="User Chart">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Posts</h5>
+                    <img src="{{ chart_posts }}" class="img-fluid" alt="Posts Chart">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Mood Check-Ins</h5>
+                    <img src="{{ chart_checkins }}" class="img-fluid" alt="Check-Ins Chart">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Average Mood</h5>
+                    <img src="{{ chart_mood }}" class="img-fluid" alt="Average Mood Chart">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
