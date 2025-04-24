@@ -31,3 +31,5 @@ class Comment(models.Model):
     def __str__(self):
         return self.content
 
+    def like_count(self):
+        return self.likes.count()

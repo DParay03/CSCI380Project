@@ -1,9 +1,10 @@
+from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Post
+from .models import Post, Comment
 from .forms import CommentForm
 
 # Create your views here.
@@ -102,4 +103,22 @@ def toggle_like(request, pk):
     else:
         post.likes.add(request.user)
 
+        send_mail(
+            subject='Someone liked your post!',
+            message=f'{request.user.username} liked your post: "{post.title}".',
+            from_email=None,  # uses DEFAULT_FROM_EMAIL
+            recipient_list=[post.author.email],
+            fail_silently=False,  # or False for debugging
+        )
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+def toggle_comment_like(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.user in comment.likes.all():
+        comment.likes.remove(request.user)
+    else:
+        comment.likes.add(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
