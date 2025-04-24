@@ -23,7 +23,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies') # Allow level-one nested comments
     content = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='liked_comments', blank=True)
