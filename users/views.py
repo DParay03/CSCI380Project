@@ -20,6 +20,8 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
+
+# View and Update User Profile
 @login_required(login_url='login')
 def profile(request):
     if request.method == "POST":
@@ -35,6 +37,8 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    #the forms to render with the template
     context = {
         'u_form': u_form,
         'p_form': p_form,

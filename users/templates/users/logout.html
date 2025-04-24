@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center pt-5 mt-5">
-  <div class="text-center">
-    <h2 class="mb-3 text-success">You have been logged out</h2>
-    <div class="border-top pt-3 fs-4">
-      <small class="text-muted">
-        Want to come back?
-        <a href="{% url 'login' %}" class="ms-2 text-decoration-none">Log In Again</a>
-      </small>
+    <div class="text-center">
+        <h2 class="mb-3 text-success">You have been logged out</h2>
+        <div class="border-top pt-3 fs-4">
+            <small class="text-muted">
+                Want to come back?
+                <a href="{% url 'login' %}" class="ms-2 text-decoration-none">Log In Again</a>
+            </small>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}
