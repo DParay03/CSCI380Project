@@ -19,7 +19,19 @@
         </div>
         <h4 class="fs-4 text-primary text-decoration-underline">{{ post.title }}</h4>
         <p class="fs-5">{{ post.content }}</p>
+      <div class="d-flex justify-content-end align-items-center mt-3">
+            <form action="{% url 'toggle-like' post.pk %}" method="post" class="me-2">
+              {% csrf_token %}
+              {% if user in post.likes.all %}
+                <button type="submit" class="btn btn-outline-danger btn-md mt-0">Unlike</button>
+              {% else %}
+                <button type="submit" class="btn btn-outline-primary btn-md mt-0 ">Like</button>
+              {% endif %}
+            </form>
+            <p class="mb-0 fs-4 text-muted">{{ post.likes.count }} like{{ post.likes.count|pluralize }}</p>
+          </div>
       </div>
+
     </div>
   </div>
 

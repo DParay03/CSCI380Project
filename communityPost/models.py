@@ -9,9 +9,13 @@ class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
 
     def __str__(self):
         return self.title
+
+    def like_count(self):
+        return self.likes.count()
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
@@ -22,6 +26,8 @@ class Comment(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
     content = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(User, related_name='liked_comments', blank=True)
 
     def __str__(self):
         return self.content
+

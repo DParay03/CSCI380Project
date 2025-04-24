@@ -33,7 +33,7 @@ def daily_checkin(request):
     # Calculate weekly average
     weekly_avg = weekly_checkins.aggregate(Avg('score'))['score__avg'] # Result is a dictionary {'score__avg': calculated_average} extract value using key 'score_avg'
 
-    # Get the last few days' entries
+    # Get the last few days' entries attributes
     recent_entries = [
         {
             'date': entry.date,
@@ -47,13 +47,13 @@ def daily_checkin(request):
     today = timezone.now().date()
 
     if range_param == "week":
-        start_date = today - timedelta(days=7)
+        start_date = today - timedelta(days=6)
         checkins = CheckIn.objects.filter(user=request.user, date__gte=start_date).order_by("date")
     elif range_param == "month":
-        start_date = today - timedelta(days=30)
+        start_date = today - timedelta(days=29)
         checkins = CheckIn.objects.filter(user=request.user, date__gte=start_date).order_by("date")
     elif range_param == "year":
-        start_date = today - timedelta(days=365)
+        start_date = today - timedelta(days=364)
         checkins = CheckIn.objects.filter(user=request.user, date__gte=start_date).order_by("date")
     else: # default to all
         checkins = CheckIn.objects.filter(user=request.user).order_by("date")

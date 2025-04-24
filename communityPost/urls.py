@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, UserPostListView
+from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, UserPostListView, toggle_like
 
 urlpatterns = [
     path('', PostListView.as_view(), name='communityPost-home'),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('new/', PostCreateView.as_view(), name='post-create'),
     path('<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+    path('<int:pk>/like', toggle_like, name='toggle-like'),
 ]
