@@ -12,5 +12,6 @@ class JournalEntry(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+
+    def get_absolute_url(self): # define the canonical URL for a model instance - tells Django how to get the URL to view the detail page for specific Journal Object
+        return reverse('journal-detail', kwargs={'pk': self.pk})

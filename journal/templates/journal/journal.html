@@ -1,37 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-0 pt-0">
-  <h2 class="text-center mb-4">Journal Entries</h2>
-
+  <h2 class="text-center mb-4">Journal Entries ({{ page_obj.paginator.count }})</h2>
   {% for entry in journalEntry %}
     <div class="card mb-4 shadow-sm">
       <div class="card-body d-flex">
-        <img src="{{ entry.user.profile.image.url }}" alt="Profile Picture" class="rounded-circle me-3" style="width: 64px; height: 64px; object-fit: cover;">
-        <div class="flex-grow-1 text-break">
+        <div class="flex-shrink-0">
+          <img src="{{ entry.user.profile.image.url }}"
+               alt="Profile Picture"
+               class="rounded-circle me-3"
+               style="width: 64px; height: 64px; object-fit: cover;">
+        </div>
+        <div class="flex-grow-1 text-break position-relative w-100">
           <div class="d-flex justify-content-between align-items-center mb-2 fs-3">
             <div class="fs-4">
-              <a href="{% url 'journal-home' %}" class="fw-bold text-decoration-underline text-blue">{{ entry.user }}</a>
+              <a
+                href="{% url 'journal-home' %}"
+                class="fw-bold text-decoration-underline text-blue"
+              >
+                {{ entry.user }}
+              </a>
               <span class="text-muted small ps-2">{{ entry.date_posted }}</span>
             </div>
           </div>
           <h5>
-            <a href="{% url 'journal-detail' entry.id %}" class="text-primary text-decoration-underline fs-4">{{ entry.title }}</a>
+            <a
+              href="{% url 'journal-detail' entry.id %}"
+              class="text-primary text-decoration-underline fs-4"
+            >
+              {{ entry.title }}
+            </a>
           </h5>
           <p class="fs-5">{{ entry.content|truncatechars:400 }}</p>
         </div>
       </div>
     </div>
   {% endfor %}
-
   {% if is_paginated %}
     <nav aria-label="Page navigation">
       <ul class="pagination justify-content-center mt-4">
+
         {% if page_obj.has_previous %}
           <li class="page-item">
             <a class="page-link" href="?page=1">First</a>
           </li>
         {% endif %}
-
         {% for num in page_obj.paginator.page_range %}
           {% if page_obj.number == num %}
             <li class="page-item active">
@@ -43,7 +56,6 @@
             </li>
           {% endif %}
         {% endfor %}
-
         {% if page_obj.has_next %}
           <li class="page-item">
             <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>

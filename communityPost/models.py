@@ -18,7 +18,7 @@ class Post(models.Model):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse('post-detail', kwargs={'pk': self.pk}) # tells Django to get URL to view detail page for a specific Post Object
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
