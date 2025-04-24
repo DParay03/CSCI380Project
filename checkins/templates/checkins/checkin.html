@@ -4,35 +4,36 @@
 <div class="container my-4 mt-0 pt-0">
     <h2 class="mb-4">Daily Check-in</h2>
 
+    <!-- Check-in Form -->
     <form method="post" class="mb-4">
         {% csrf_token %}
         <div class="form-group">
-            {{ form.as_p }}
+            {{ form.as_p }}  <!-- Renders the form fields in paragraph tags -->
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
+    <!-- Display today's mood score -->
     <h3>Your Scores</h3>
     <p><strong>Today's Score:</strong> {{ today_score }}</p>
 
+    <!-- Recent mood entries -->
     <h4>Recent Entries:</h4>
     {% if entries_count < 7 %}
         <div class="alert alert-warning">
             <p>Note: Only {{ entries_count }} days of data available</p>
         </div>
-        <ul class="list-group mb-3">
-        {% for entry in recent_entries %}
-            <li class="list-group-item">{{ entry.date|date:"M d" }}: {{ entry.score }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <ul class="list-group mb-3">
-        {% for entry in recent_entries %}
-            <li class="list-group-item">{{ entry.date|date:"M d" }}: {{ entry.score }}</li>
-        {% endfor %}
-        </ul>
     {% endif %}
 
+    <ul class="list-group mb-3">
+        {% for entry in recent_entries %}
+            <li class="list-group-item">
+                {{ entry.date|date:"M d" }}: {{ entry.score }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Weekly average score -->
     {% if weekly_avg %}
         <p><strong>Weekly Average:</strong> {{ weekly_avg|floatformat:1 }}</p>
     {% else %}
@@ -40,53 +41,61 @@
     {% endif %}
 </div>
 
+<!-- Mood Tracker Section with Chart -->
+<div class="container py-5">
+    <h2 class="text-center mb-4">
+        Your Mood Tracker
+        {% if range != "all" %}
+            (Past {{ range|title }})
+        {% endif %}
+    </h2>
 
-    <div class="container py-5">
-  <h2 class="text-center mb-4">Your Mood Tracker
-  {% if range != "all" %}
-    (Past {{ range|title }})
-  {% endif %}
-</h2>
+    <!-- Range Selector Buttons -->
+    <div class="mb-4 text-center">
+        <a href="?range=week" class="btn btn-outline-primary btn-sm {% if range == 'week' %}active{% endif %}">Week</a>
+        <a href="?range=month" class="btn btn-outline-primary btn-sm {% if range == 'month' %}active{% endif %}">Month</a>
+        <a href="?range=year" class="btn btn-outline-primary btn-sm {% if range == 'year' %}active{% endif %}">Year</a>
+        <a href="?range=all" class="btn btn-outline-primary btn-sm {% if range == 'all' %}active{% endif %}">All</a>
+    </div>
 
-  <div class="mb-4 text-center">
-    <a href="?range=week" class="btn btn-outline-primary btn-sm {% if range == 'week' %}active{% endif %}">Week</a>
-    <a href="?range=month" class="btn btn-outline-primary btn-sm {% if range == 'month' %}active{% endif %}">Month</a>
-    <a href="?range=year" class="btn btn-outline-primary btn-sm {% if range == 'year' %}active{% endif %}">Year</a>
-      <a href="?range=all" class="btn btn-outline-primary btn-sm {% if range == 'all' %}active{% endif %}">All</a>
-  </div>
-
-  <canvas id="moodChart" height="120"></canvas>
+    <!-- Chart.js canvas element -->
+    <canvas id="moodChart" height="120"></canvas>
 </div>
 
+<!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JavaScript to Render the Mood Chart -->
 <script>
-const ctx = document.getElementById('moodChart').getContext('2d');
-const chartData = {{ chart_data|safe }};
+    const ctx = document.getElementById('moodChart').getContext('2d');
 
-const labels = chartData.map(item => item.date);
-const scores = chartData.map(item => item.score);
+    // Extract chart data passed from Django context
+    const chartData = {{ chart_data|safe }};
+    const labels = chartData.map(item => item.date);     // X-axis labels
+    const scores = chartData.map(item => item.score);    // Y-axis values
 
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Mood Score',
-            data: scores,
-            borderColor: '#0d6efd',
-            backgroundColor: 'rgba(13,110,253,0.1)',
-            fill: false,
-            tension: 0
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                suggestedMin: 0,
-                suggestedMax: 10
+    // Create the line chart
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Mood Score',
+                data: scores,
+                borderColor: '#0d6efd',
+                backgroundColor: 'rgba(13,110,253,0.1)',
+                fill: false,
+                tension: 0  // Straight lines between points
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    suggestedMin: 0,
+                    suggestedMax: 10
+                }
             }
         }
-    }
-});
+    });
 </script>
 {% endblock %}
