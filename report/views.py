@@ -30,6 +30,7 @@ def generate_single_chart(title, label, value):
     buffer.seek(0)
     return base64.b64encode(buffer.read()).decode('utf-8')
 
+
 def report_views(request):
     # Stats
     user_count = User.objects.count()
