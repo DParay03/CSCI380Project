@@ -6,6 +6,8 @@ from .views import (
     PostUpdateView,
     PostDeleteView,
     UserPostListView,
+    CommentUpdateView,
+    CommentDeleteView,
     toggle_like,
     toggle_comment_like,
 )
@@ -23,7 +25,13 @@ urlpatterns = [
 
     path('<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
 
+    # Toggle like on a post
     path('<int:pk>/like', toggle_like, name='toggle-like'),
 
+    # Toggle like on a comment
     path('<int:pk>/comment/like', toggle_comment_like, name='toggle-comment-like'),
+
+    path('<int:pk>/comment/update', CommentUpdateView.as_view(), name='comment-update'),
+
+    path('<int:pk>/comment/delete', CommentDeleteView.as_view(), name='comment-delete'),
 ]

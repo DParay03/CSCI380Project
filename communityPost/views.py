@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
@@ -53,6 +54,21 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.request.user == self.get_object().author
 
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    fields = ['content']
+    context_object_name = 'comment'
+
+    def get_success_url(self):
+        return reverse('post-detail', kwargs={'pk': self.object.post.pk})
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        return self.request.user == self.get_object().author
+
 class PostDetailView(DetailView):
     model = Post
     template_name = 'communityPost/communityPost_detail.html'
@@ -82,6 +98,17 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = 'communityPost/post_confirm_delete.html'
     success_url = '/communityPost'
     context_object_name = 'post'
+
+    def test_func(self):
+        return self.request.user == self.get_object().author
+
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = 'communityPost/comment_confirm_delete.html'
+    context_object_name = 'comment'
+
+    def get_success_url(self):
+        return reverse('post-detail', kwargs={'pk': self.object.post.pk})
 
     def test_func(self):
         return self.request.user == self.get_object().author
