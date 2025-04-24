@@ -31,6 +31,7 @@ urlpatterns = [
     # Admin
     path('admin/', admin.site.urls),
     path('report/', include('report.urls')),
+
     # User Authentication & Profiles
     path('register/', user_views.register, name="register"),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name="login"),
@@ -50,5 +51,6 @@ urlpatterns = [
     path('resources/', include('resources.urls')),
 ]
 
+# To serve Media Files during development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
