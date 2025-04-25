@@ -5,7 +5,6 @@ from .models import Profile
 
 
 class UserRegistrationForm(UserCreationForm): # Subclass of UserCreationForm
-    #manually add forms
     email = forms.EmailField()
     first_name = forms.CharField(max_length=30, required=True, help_text='Required')
     last_name = forms.CharField(max_length=30, required=True, help_text='Required')
@@ -15,6 +14,7 @@ class UserRegistrationForm(UserCreationForm): # Subclass of UserCreationForm
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
 
 class UserUpdateForm(forms.ModelForm): # Parameter automatically generates forms tied to a Django model, automatically generating form fields based on model's fields, performs automatic validation
+    #manually add forms
     email = forms.EmailField()
     first_name = forms.CharField(max_length=30, required=True, help_text='Required')
     last_name = forms.CharField(max_length=30, required=True, help_text='Required')
