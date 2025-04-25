@@ -1,0 +1,99 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    padding-top: 70px; /* Account for fixed navbar height */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #4a7c59;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #d4f1f4 !important;
+}
+
+.navbar .nav-item form {
+    margin-left: 1rem; /* Spacing between nav items and forms */
+}
+
+/* Footer */
+footer {
+    background-color: #f0f4f8;
+    border-top: 1px solid #dbe2e8;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+footer a {
+    color: #d9534f;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-link {
+    color: #f8f9fa;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 8px;
+}
+
+/* Cards */
+.card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 1rem;
+}
+
+.card-title {
+    color: #4a7c59;
+}
+
+/* Auth and Form Elements inside Cards */
+.card form label {
+    font-weight: 500;
+    color: #4a4a4a;
+}
+
+.card form input,
+.card form select,
+.card form textarea {
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+}
+
+.card form input:focus {
+    border-color: #4a7c59;
+    box-shadow: 0 0 0 0.2rem rgba(74, 124, 89, 0.25);
+}
+
+.card form .form-group,
+.card form fieldset {
+    margin-bottom: 1rem; /* Consistent spacing between fields */
+}
