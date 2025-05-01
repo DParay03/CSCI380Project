@@ -1,23 +1,16 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <div class="container my-4 mt-0 pt-0">
     <h2 class="mb-4">Daily Check-in</h2>
-
-    <!-- Check-in Form -->
     <form method="post" class="mb-4">
         {% csrf_token %}
         <div class="form-group">
-            {{ form.as_p }}  <!-- Renders the form fields in paragraph tags -->
+            {{ form.as_p }}
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
-    <!-- Display today's mood score -->
     <h3>Your Scores</h3>
     <p><strong>Today's Score:</strong> {{ today_score }}</p>
-
-    <!-- Recent mood entries -->
     <h4>Recent Entries:</h4>
     {% if entries_count < 7 %}
         <div class="alert alert-warning">
@@ -57,12 +50,8 @@
         <a href="?range=year" class="btn btn-outline-primary btn-sm {% if range == 'year' %}active{% endif %}">Year</a>
         <a href="?range=all" class="btn btn-outline-primary btn-sm {% if range == 'all' %}active{% endif %}">All</a>
     </div>
-
-    <!-- Chart.js canvas element -->
     <canvas id="moodChart" height="120"></canvas>
 </div>
-
-<!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- JavaScript to Render the Mood Chart -->

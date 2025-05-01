@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth import logout
 
 # Create your views here.
 def register(request):
@@ -44,6 +45,16 @@ def profile(request):
         'p_form': p_form,
     }
     return render(request, 'users/profile.html', context)
+
+@login_required(login_url='login')
+def delete_account(request):
+    if request.method == "POST":
+        user = request.user
+        logout(request)
+        user.delete()
+        messages.success(request, f'Account successfully deleted!')
+        return redirect('/')
+    return render(request, 'users/account_confirm_delete.html')
 
 def home(request):
     return render(request, 'users/home.html')
